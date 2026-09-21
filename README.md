@@ -3,7 +3,7 @@
 Evidence collection at the scene. Fingerprints a file on the device before it is handled by
 anyone else, queues the record locally, and syncs when a connection becomes available.
 
-Part of **Custody**, ICSC 2026 Universities Hackathon, Track H, by Team Captain.
+Part of **Custody**, ICSC 2026 Universities Hackathon, Track H, by Team Echelon.
 The API and the project overview are in [`hackathonBackend`](../hackathonBackend).
 
 ---
@@ -62,7 +62,7 @@ npm install
 npx expo start
 ```
 
-Open on a device or simulator, then tap **Setup** and configure the server address.
+Open on a device or simulator, then tap **Setup** to configure the officer badge and case reference. (To point to a local backend, update `serverUrl` in `DEFAULTS` inside `App.js`).
 
 ---
 
