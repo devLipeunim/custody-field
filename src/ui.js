@@ -14,7 +14,7 @@ export function useReduceMotion() {
 
 export function FadeIn({ children, delay = 0, distance = 8, style }) {
   const reduce = useReduceMotion();
-  const t = useRef(new Animated.Value(reduce ? 1 : 0)).current;
+  const [t] = useState(() => new Animated.Value(reduce ? 1 : 0));
 
   useEffect(() => {
     if (reduce) { t.setValue(1); return; }
@@ -40,7 +40,7 @@ export function FadeIn({ children, delay = 0, distance = 8, style }) {
 
 export function Skeleton({ width, height = 12, radius = 4, style }) {
   const reduce = useReduceMotion();
-  const pulse = useRef(new Animated.Value(0.45)).current;
+  const [pulse] = useState(() => new Animated.Value(0.45));
 
   useEffect(() => {
     if (reduce) { pulse.setValue(0.4); return; }
@@ -86,8 +86,8 @@ export function SkeletonList({ count = 3 }) {
 
 export function ProgressBar({ progress, indeterminate = false }) {
   const reduce = useReduceMotion();
-  const w = useRef(new Animated.Value(0)).current;
-  const slide = useRef(new Animated.Value(0)).current;
+  const [w] = useState(() => new Animated.Value(0));
+  const [slide] = useState(() => new Animated.Value(0));
 
   useEffect(() => {
     if (indeterminate) return;
@@ -126,7 +126,7 @@ export function ProgressBar({ progress, indeterminate = false }) {
 
 export function PendingBadge({ children, style, textStyle }) {
   const reduce = useReduceMotion();
-  const pulse = useRef(new Animated.Value(1)).current;
+  const [pulse] = useState(() => new Animated.Value(1));
 
   useEffect(() => {
     if (reduce) return;
@@ -147,7 +147,7 @@ export function PendingBadge({ children, style, textStyle }) {
 
 export function StatusDot({ online, style, onlineStyle, offlineStyle }) {
   const reduce = useReduceMotion();
-  const scale = useRef(new Animated.Value(1)).current;
+  const [scale] = useState(() => new Animated.Value(1));
   const wasOnline = useRef(online);
 
   useEffect(() => {

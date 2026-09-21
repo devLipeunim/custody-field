@@ -83,6 +83,7 @@ export async function startRecording({ onProgress } = {}) {
     interruptionMode: "doNotMix",
   });
 
+  // eslint-disable-next-line import/namespace
   const recorder = new AudioModule.AudioRecorder(RecordingPresets.HIGH_QUALITY);
   await recorder.prepareToRecordAsync();
   recorder.record();

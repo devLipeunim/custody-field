@@ -3,6 +3,7 @@ import {
   Alert, AppState, Pressable, ScrollView,
   StyleSheet, Text, TextInput, View,
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import * as DocumentPicker from "expo-document-picker";
@@ -379,19 +380,21 @@ function FieldApp() {
                 <Text style={s.recDurationText}>{formatDuration(recordingState.durationMs)}</Text>
               </View>
               {recordingState.wasBackgrounded && (
-                <View style={s.recNoticeBanner}>
-                  <Text style={s.recNoticeText}>
-                    ⚠️ Audio capture was paused while outside the app (Expo Go limitation). Timer tracks actual recorded audio.
+                <View style={[s.recNoticeBanner, { flexDirection: "row", alignItems: "flex-start", gap: 6 }]}>
+                  <Ionicons name="warning" size={16} color="#fde047" style={{ marginTop: 2 }} />
+                  <Text style={[s.recNoticeText, { flex: 1 }]}>
+                    Audio capture was paused while outside the app (Expo Go limitation). Timer tracks actual recorded audio.
                   </Text>
                 </View>
               )}
               <View style={s.recActionsRow}>
                 <Pressable
-                  style={s.recStopBtn}
+                  style={[s.recStopBtn, { flexDirection: "row", justifyContent: "center", gap: 6 }]}
                   onPress={handleStopAndSealRecording}
                   disabled={!!busy}
                 >
-                  <Text style={s.recStopBtnText}>⏹ Stop & Seal</Text>
+                  <Ionicons name="stop" size={14} color="#ffffff" />
+                  <Text style={s.recStopBtnText}>Stop & Seal</Text>
                 </Pressable>
                 <Pressable
                   style={s.recCancelBtn}
@@ -405,18 +408,20 @@ function FieldApp() {
           ) : (
             <View style={s.actionBtnRow}>
               <Pressable
-                style={[s.primary, s.halfBtn, busy && s.primaryDisabled]}
+                style={[s.primary, s.halfBtn, busy && s.primaryDisabled, { flexDirection: "row", justifyContent: "center", gap: 6 }]}
                 onPress={collectFile}
                 disabled={!!busy}
               >
-                <Text style={s.primaryText}>📁 Choose file</Text>
+                <Ionicons name="folder-open" size={16} color="#ffffff" />
+                <Text style={s.primaryText}>Choose file</Text>
               </Pressable>
               <Pressable
-                style={[s.audioRecordBtn, s.halfBtn, busy && s.primaryDisabled]}
+                style={[s.audioRecordBtn, s.halfBtn, busy && s.primaryDisabled, { flexDirection: "row", justifyContent: "center", gap: 6 }]}
                 onPress={handleStartRecording}
                 disabled={!!busy}
               >
-                <Text style={s.audioRecordBtnText}>🎙 Record audio</Text>
+                <Ionicons name="mic" size={16} color="#86efac" />
+                <Text style={s.audioRecordBtnText}>Record audio</Text>
               </Pressable>
             </View>
           )}
@@ -535,7 +540,7 @@ function AudioPlayerRow({ uri, durationMs }) {
   return (
     <View style={s.audioPlayer}>
       <Pressable onPress={togglePlay} style={s.audioPlayBtn} hitSlop={8}>
-        <Text style={s.audioPlayIcon}>{status.playing ? "❚❚" : "▶"}</Text>
+        <Ionicons name={status.playing ? "pause" : "play"} size={14} color="#86efac" style={status.playing ? {} : { marginLeft: 2 }} />
       </Pressable>
       <View style={{ flex: 1 }}>
         <View style={s.audioTrack}>
